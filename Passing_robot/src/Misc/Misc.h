@@ -88,5 +88,42 @@ float map2(float val, float low_in, float high_in, float low_op, float high_op)
 {
     return (((val - low_in) / (high_in - low_in)) * (high_op - low_op)) + low_op;
 }
+void kick(int switch_pin, int motor_pin_A, int motor_pin_B, int motor_pin_pwm, int motor_pwm , int piston_pin, bool HARD = true)
+{
+    int currmillis , finalmilllis , initialmillis = 0 ;
+    while (digitalRead(switch_pin) == HIGH)
+    {
+        digitalWrite(motor_pin_A, motor_pwm > 0);
+        digitalWrite(motor_pin_B, motor_pwm < 0);
+        analogWrite(motor_pin_pwm, 150);
 
+        if (digitalRead(switch_pin) == LOW)
+        {   initialmillis = millis();
+            currmillis=millis();
+            while(currmillis - initialmillis < 500 )
+             {
+            digitalWrite(motor_pin_A, HARD);
+            digitalWrite(motor_pin_B, HARD);
+            digitalWrite(motor_pin_pwm, 0);
+
+            digitalWrite(piston_pin, HIGH );
+            currmillis=millis();
+            }
+            break;
+        }
+    } 
+    initialmillis = millis();
+    currmillis=millis();
+    while(currmillis - initialmillis < 500 )
+             {
+            digitalWrite(motor_pin_A, motor_pwm < 0);
+            digitalWrite(motor_pin_B, motor_pwm > 0);
+            digitalWrite(motor_pin_pwm, 100);
+
+            digitalWrite(piston_pin, HIGH );
+            currmillis=millis();
+            }
+
+    digitalWrite(piston_pin, LOW);
+}
 #endif
