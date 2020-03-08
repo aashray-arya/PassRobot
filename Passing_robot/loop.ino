@@ -100,15 +100,10 @@ void loop()
               {
                 bot.R_90(40);
               }
-//        else if (ds4.button(DOWN))
-//             {
-//                resetEncoder();
-//                resetBNO();
-//             }
-//        else if(ds4.button(R1))
-//            {
-//                testRoutine();
-//            }
+        else if (ds4.button(DOWN))
+             {
+               kick(bswitch_pin,kmotor_pin_A,kmotor_pin_B,kmotor_pin_pwm,kmotor_pwm , kpiston_pin);
+             }
         else if (!(Lx > -AXIS_DEAD_ZONE && Lx < AXIS_DEAD_ZONE) || !(Ly > -AXIS_DEAD_ZONE && Ly < AXIS_DEAD_ZONE))
         {
           Serial.println("Left Axis Triggered\t");
