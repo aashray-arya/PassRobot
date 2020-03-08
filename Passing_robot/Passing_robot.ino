@@ -42,7 +42,7 @@ constexpr motor front1(8, 10, 9);  //DO | D1 | PWM        //CHANGE-HERE
 constexpr motor front2(23, 27, 12); //CHANGE-HERE
 constexpr motor back3(7, 5, 6);   //CHANGE-HERE
 constexpr motor back4(4, 2, 3);
-
+int bswitch_pin,kmotor_pin_A,kmotor_pin_B,kmotor_pin_pwm,kmotor_pwm ,kpiston_pin;
 //  PID Constants
 constexpr double linearConst[] = {0.0, 0.0, 0.0};          //Kp | Ki | Kd
 constexpr double rotationalConst[] = {0.0, 0.0, 0.0}; //{0.03, 0.135, 0.011} //avg:{0.03, 0.117, 0.018}
